@@ -21,7 +21,7 @@ export default function List(props: IProps) {
                     item={item}
                     focus={currentFocus === index}
                     index={index}
-                    setCurrentFocus={setCurrentFocus}
+                    setCurrentFocus={setCurrentFocus as React.Dispatch<React.SetStateAction<number>>}
                     handleSelectItem={handleSelectItem}
                 >
                     <HighlightedText item={item} filterText={filterText} />
@@ -29,4 +29,4 @@ export default function List(props: IProps) {
             ))}
         </ul>
     );
-};
+}

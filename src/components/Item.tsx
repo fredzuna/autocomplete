@@ -5,7 +5,7 @@ interface ItemProps {
     item: IDataItem,
     focus: boolean,
     index: number,
-    setCurrentFocus: number | React.Dispatch<React.SetStateAction<number>>
+    setCurrentFocus: React.Dispatch<React.SetStateAction<number>>
     children: React.ReactNode,
     handleSelectItem: (item: IDataItem) => void
 }
@@ -14,8 +14,8 @@ export default function Item({ item, focus, index, setCurrentFocus, children, ha
     const ref = useRef(null);
 
     useEffect(() => {
-        if (focus) {            
-            ref.current?.focus();
+        if (focus && ref.current) {
+            (ref.current as HTMLInputElement).focus();            
         }
     }, [focus]);
 
