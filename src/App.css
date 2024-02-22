@@ -79,3 +79,7 @@ ul.container-items {
   top: 7px;
   cursor: pointer;
 }
+
+#ul-items .active {
+  background-color: #f0f0f0;
+}

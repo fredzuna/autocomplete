@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IDataItem from '../interfaces/IDataItem';
 import apiService from '../api/apiService';
-import HighlightedText from './HighlightedText';
 import useDebounce from '../hooks/useDebounce';
 import Loader from './Loader';
+import List from './List';
+import Input from './Input';
 
 export default function Autocomplete() {
     const [filterText, setFilterText] = useState<string>("");
@@ -82,69 +83,29 @@ export default function Autocomplete() {
         };
     }, [selectedValue]);
 
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            switch (event.key) {
-                case 'ArrowUp':
-                    event.preventDefault();
-                    break;
-                case 'ArrowDown':
-                    event.preventDefault();
-                    break;
-                case 'Escape':
-                    // Close the options
-                    restorePreviousValue(selectedValue);
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [selectedValue]);
-
     return (
         <div
             ref={containerRef}
             className='autocomplete'
         >
-            <div className='input-container'>
-                <input
-                    className='filter-text'
-                    type="text"
-                    value={filterText}
-                    onChange={handleFilter}
-                    placeholder="Filter data..."
-                    onFocus={fetchData}
-                    ref={inputRef}
-                />
-                {filterText.length > 0 &&
-                    <span
-                        className='clear-icon'
-                        onClick={handleClear}
-                    >X</span>
-                }
-            </div>
+            <Input
+                filterText={filterText}
+                fetchData={fetchData}
+                handleFilter={handleFilter}
+                inputRef={inputRef}
+                handleClear={handleClear}
+
+            />
             <div className='container'>
                 {isLoading === true ?
                     <Loader />
                     :
                     (showOptions &&
-                        <ul className='container-items'>
-                            {data.map(item => (
-                                <li
-                                    key={item.id}
-                                    onClick={() => handleSelectItem(item)}
-                                    tabIndex={item.id}
-                                >
-                                    <HighlightedText item={item} filterText={filterText} />
-                                </li>
-                            ))}
-                        </ul>
+                        <List
+                            data={data}
+                            handleSelectItem={handleSelectItem}
+                            filterText={filterText}
+                        />
                     )
                 }
             </div>
