@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "name": "My product 1 for doctor"
+    },
+    {
+      "id": 2,
+      "name": "My product 2 for student"
+    },
+    {
+      "id": 3,
+      "name": "My product 3 for client"
+    }
+  ]
