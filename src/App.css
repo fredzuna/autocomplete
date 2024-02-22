@@ -40,3 +40,42 @@
 .read-the-docs {
   color: #888;
 }
+
+ul.container-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container-items li {
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.container-items li:hover {
+  background-color: #f0f0f0;
+}
+
+.filter-text {
+  width: 200px; 
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+}
+
+.highlighted-text {
+  background: aquamarine;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container .clear-icon {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  cursor: pointer;
+}
